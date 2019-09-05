@@ -13,5 +13,5 @@
             "email": "wx@wooduan.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
