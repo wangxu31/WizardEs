@@ -1,0 +1,17 @@
+{
+    "name": "wizard-member/es-manager",
+    "description": "A customed elasticsearch manager",
+    "type": "library",
+    "require": {
+        "elasticsearch/elasticsearch": "~6.0",
+        "crcms/elasticsearch": "^1.0"
+    },
+    "license": "Wizard",
+    "authors": [
+        {
+            "name": "Clive",
+            "email": "wx@wooduan.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
