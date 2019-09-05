@@ -6,7 +6,7 @@
         "elasticsearch/elasticsearch": "~6.0",
         "crcms/elasticsearch": "^1.0"
     },
-    "license": "Wizard",
+    "license": "wooduan",
     "authors": [
         {
             "name": "Clive",
