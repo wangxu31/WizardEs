@@ -18,6 +18,11 @@ class WizardLogManager extends WizardEsManager
             throw new \Exception('Log data should be one dimension array');
         }
         $logData['log_level'] = 'debug';
+        if (isset($logData['created_at'])) {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
+        } else {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
+        }
         if (!is_null($e)) {
             $logData['exception_code']  = $e->getCode();
             $logData['exception_msg']   = $e->getMessage();
@@ -31,6 +36,11 @@ class WizardLogManager extends WizardEsManager
             throw new \Exception('Log data should be one dimension array');
         }
         $logData['log_level'] = 'warning';
+        if (isset($logData['created_at'])) {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
+        } else {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
+        }
         if (!is_null($e)) {
             $logData['exception_code']  = $e->getCode();
             $logData['exception_msg']   = $e->getMessage();
@@ -44,6 +54,11 @@ class WizardLogManager extends WizardEsManager
             throw new \Exception('Log data should be one dimension array');
         }
         $logData['log_level'] = 'info';
+        if (isset($logData['created_at'])) {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
+        } else {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
+        }
         if (!is_null($e)) {
             $logData['exception_code']  = $e->getCode();
             $logData['exception_msg']   = $e->getMessage();
@@ -57,6 +72,11 @@ class WizardLogManager extends WizardEsManager
             throw new \Exception('Log data should be one dimension array');
         }
         $logData['log_level'] = 'error';
+        if (isset($logData['created_at'])) {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
+        } else {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
+        }
         if (!is_null($e)) {
             $logData['exception_code']  = $e->getCode();
             $logData['exception_msg']   = $e->getMessage();
