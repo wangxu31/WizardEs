@@ -1,5 +1,5 @@
 <?php
-namespace Wizard\Elasticsearch;
+namespace wizardweb\Elasticsearch;
 
 /**
  * wooduan Es 操作模型
@@ -19,7 +19,7 @@ class WizardEsManager
     protected $esClient;
     protected $esBuilder;
 
-    public function __construct(array $configs, $retries){
+    public function __construct(array $configs, $retries=3){
         $this->esClient = ClientBuilder::create()->setHosts($configs)->setRetries($retries)->build();
         $this->esBuilder = new Builder($configs, new Grammar(), $this->esClient);
     }
