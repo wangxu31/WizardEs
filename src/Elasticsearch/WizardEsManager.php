@@ -1,5 +1,5 @@
 <?php
-namespace Wizardweb\Elasticsearch;
+namespace Wizard\Elasticsearch;
 
 /**
  * wooduan Es 操作模型
