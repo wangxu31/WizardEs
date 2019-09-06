@@ -10,8 +10,13 @@
     "authors": [
         {
             "name": "Clive",
-            "email": "wx@wooduan.com"
+            "email": "wxu@wooduan.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "WizardWeb\\Elasticsearch\\": "src/Elasticsearch/"
+        }
+    },
     "minimum-stability": "stable"
 }
