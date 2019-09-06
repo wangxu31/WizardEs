@@ -13,10 +13,5 @@
             "email": "wxu@wooduan.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Elasticsearch\\": "src/Elasticsearch/"
-        }
-    },
     "minimum-stability": "stable"
 }
