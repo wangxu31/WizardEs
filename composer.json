@@ -1,5 +1,5 @@
 {
-    "name": "wizard-member/es-manager",
+    "name": "wizard/elasticsearch",
     "description": "A customed elasticsearch manager",
     "type": "library",
     "require": {
