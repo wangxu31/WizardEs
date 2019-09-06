@@ -54,7 +54,7 @@ class WizardEsManager
      * @example https://github.com/crcms/elasticsearch
      */
     public function getEsBuilder(){
-        return $this->esBuilder->index($this->index)->type($this->type);
+        return $this->esBuilder->index($this->getIndex())->type($this->getType());
     }
 
     /*****************************************************文档操作****************************************************/
@@ -116,10 +116,10 @@ class WizardEsManager
      */
     public function index(array $data=[], $id=null, array $otherParams=[]){
         $params = [
-            'index' => $this->index,
+            'index' => $this->getIndex(),
             'type' => $this->type,
             'body' => $data ? : $this->attributes,
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         if ($id) {
             $params['id'] = $id;
@@ -140,10 +140,10 @@ class WizardEsManager
      */
     public function get($id){
         $params = [
-            'index' => $this->index,
-            'type' => $this->type,
+            'index' => $this->getIndex(),
+            'type' => $this->getType(),
             'id' => $id,
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         $result = $this->esClient->get($params);
         if (isset($result['found']) && $result['found']) {
@@ -189,14 +189,14 @@ class WizardEsManager
          */
 
         $params = [
-            'index' => $this->index,
-            'type' => $this->type,
+            'index' => $this->getIndex(),
+            'type' => $this->getType(),
             'body' => [
                 'query' => [
                     $patterns
                 ]
             ],
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->search($params);
     }
@@ -209,13 +209,13 @@ class WizardEsManager
      */
     public function update($id, array $newData){
         $params = [
-            'index' => $this->index,
-            'type' => $this->type,
+            'index' => $this->getIndex(),
+            'type' => $this->getType(),
             'id' => $id,
             'body' => [
                 'doc' => $newData
             ],
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->update($params);
     }
@@ -227,10 +227,10 @@ class WizardEsManager
      */
     public function delete($id){
         $params = [
-            'index' => $this->index,
-            'type' => $this->type,
+            'index' => $this->getIndex(),
+            'type' => $this->getType(),
             'id' => $id,
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->delete($params);
     }
@@ -282,19 +282,19 @@ class WizardEsManager
             ];
 
             foreach ($this->casts as $key => $value) {
-                $mappings[$this->type]['properties'][$key] = ['type'=>$value];
+                $mappings[$this->getType()]['properties'][$key] = ['type'=>$value];
                 if ($value == 'date') {
-                    $mappings[$this->type]['properties'][$key]['format'] = 'yyyy-MM-dd HH:mm:ss';
+                    $mappings[$this->getType()]['properties'][$key]['format'] = 'yyyy-MM-dd HH:mm:ss';
                 }
             }
         }
         $params = [
-            'index' => $this->index,
+            'index' => $this->getIndex(),
             'body' => [
 //                'settings' => $settings,
                 'mappings' => $mappings
             ],
-            'client' => $this->client_params
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->indices()->create($params);
     }
@@ -318,7 +318,7 @@ class WizardEsManager
         ];
          * */
         $params = [
-            'index' => $this->index,
+            'index' => $this->getIndex(),
             'body' => [
                 'settings' => $settings,
             ]
@@ -375,7 +375,7 @@ class WizardEsManager
         ];
          */
         $params = [
-            'index' => $this->index,
+            'index' => $this->getIndex(),
             'body' => [
                 'mappings' => $mappings
             ]
@@ -389,8 +389,8 @@ class WizardEsManager
      */
     public function deleteIndex(){
         $params = [
-            'index' => $this->index,
-            'client' => $this->client_params
+            'index' => $this->getIndex(),
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->indices()->delete($params);
     }
@@ -401,8 +401,8 @@ class WizardEsManager
      */
     public function hasIndex(){
         $params = [
-            'index' => $this->index,
-            'client' => $this->client_params
+            'index' => $this->getIndex(),
+            'client' => $this->getClientParams()
         ];
         return $this->esClient->indices()->exists($params);
     }
@@ -425,7 +425,7 @@ class WizardEsManager
         if (isset($this->attributes[$field])) {
             return $this->attributes[$field];
         } else {
-            throw new \Exception('attributes '.$field.' not found in '.$this->get_class());
+            throw new \Exception('ES attributes '.$field.' not found');
         }
     }
 }
