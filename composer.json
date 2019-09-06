@@ -14,7 +14,7 @@
         }
     ],
     "autoload": {
-        "psr-4": {"Elasticsearch\\": "src/Elasticsearch"}
+        "psr-4": {"Wizard\\Elasticsearch\\": "src/Elasticsearch"}
     },
     "minimum-stability": "stable"
 }
