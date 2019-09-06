@@ -409,6 +409,9 @@ class WizardEsManager
 
     public function __set($field,$value){
         $method = 'set'.ucfirst(camel_case($field)).'Attribute';
+        if ($field == 'created_at') {
+            $this->attributes['kibana_time'] = date('Y-m-d H:i:s', strtotime($value)-3600*8);
+        }
         if (method_exists($this,$method)) {
             $this->$method($value);
         } else {
