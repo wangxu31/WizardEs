@@ -31,7 +31,7 @@ class WizardEsManager
     protected $type = '';
 
     /**
-     * 映射属性
+     * 文档字段
      * @var array
      */
     protected $attributes = [];
