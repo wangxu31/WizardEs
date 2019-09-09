@@ -12,11 +12,40 @@ use CrCms\ElasticSearch\Builder;
 
 class WizardEsManager
 {
+    /**
+     * ES客户端默认参数
+     * @var array
+     */
     protected $clientParams = ['ignore'=>[400,404],'timeout'=>60,'connect_timeout'=>10];
+
+    /**
+     * 索引
+     * @var string
+     */
     protected $index = '';
+
+    /**
+     * 类型
+     * @var string
+     */
     protected $type = '';
+
+    /**
+     * 映射属性
+     * @var array
+     */
     protected $attributes = [];
+
+    /**
+     * ES客户端
+     * @var \Elasticsearch\Client
+     */
     protected $esClient;
+
+    /**
+     * ES查询建造器
+     * @var Builder
+     */
     protected $esBuilder;
 
     public function __construct(array $configs, $retries=3){
@@ -24,28 +53,52 @@ class WizardEsManager
         $this->esBuilder = new Builder($configs, new Grammar(), $this->esClient);
     }
 
+    /**
+     * 获取索引名称
+     * @return string
+     */
     public function getIndex(){
         return $this->index;
     }
 
+    /**
+     * 设置索引名称
+     * @param $index
+     */
     public function setIndex($index){
         $this->index = $index;
     }
 
+    /**
+     * 获取类型名称
+     * @return string
+     */
     public function getType(){
         return $this->type;
     }
 
+    /**
+     * 设置类型名称
+     * @param $type
+     */
     public function setType($type){
         $this->type = $type;
     }
 
-    public function setClientParams(array $params){
-        $this->clientParams = $params;
-    }
-
+    /**
+     * 获取客户端参数
+     * @return array
+     */
     public function getClientParams(){
         return $this->clientParams;
+    }
+
+    /**
+     * 设置客户端参数
+     * @param array $params
+     */
+    public function setClientParams(array $params){
+        $this->clientParams = $params;
     }
 
     /**
@@ -350,6 +403,11 @@ class WizardEsManager
         return $this->esClient->indices()->getMapping($params);
     }
 
+    /**
+     * 更新索引的映射关系
+     * @param array $mappings
+     * @return array
+     */
     public function updateIndexMappings(array $mappings){
         /**
         索引body参数样例
@@ -410,6 +468,9 @@ class WizardEsManager
     public function __set($field,$value){
         $method = 'set'.ucfirst(camel_case($field)).'Attribute';
         if ($field == 'created_at') {
+            /**
+             * 由于Kibana的时间展示问题，故加上kibana_time用于记录搜索所需时间字段
+             */
             $this->attributes['kibana_time'] = date('Y-m-d H:i:s', strtotime($value)-3600*8);
         }
         if (method_exists($this,$method)) {

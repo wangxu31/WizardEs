@@ -13,6 +13,13 @@ class WizardLogManager extends WizardEsManager
         parent::__construct($configs, $retries);
     }
 
+    /**
+     * 调试日志
+     * @param array $logData
+     * @param \Exception|null $e
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function debug(array $logData=[], \Exception $e=null){
         if (count($logData) != count($logData,1)) {
             throw new \Exception('Log data should be one dimension array');
@@ -31,24 +38,13 @@ class WizardLogManager extends WizardEsManager
         return $this->createDoc($logData);
     }
 
-    public function warning(array $logData=[], \Exception $e=null){
-        if (count($logData) != count($logData,1)) {
-            throw new \Exception('Log data should be one dimension array');
-        }
-        $logData['log_level'] = 'warning';
-        if (isset($logData['created_at'])) {
-            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
-        } else {
-            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
-        }
-        if (!is_null($e)) {
-            $logData['exception_code']  = $e->getCode();
-            $logData['exception_msg']   = $e->getMessage();
-            $logData['exception_trace'] = json_encode($e);
-        }
-        return $this->createDoc($logData);
-    }
-
+    /**
+     * 普通日志
+     * @param array $logData
+     * @param \Exception|null $e
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function info(array $logData=[], \Exception $e=null){
         if (count($logData) != count($logData,1)) {
             throw new \Exception('Log data should be one dimension array');
@@ -67,6 +63,38 @@ class WizardLogManager extends WizardEsManager
         return $this->createDoc($logData);
     }
 
+    /**
+     * 警告日志
+     * @param array $logData
+     * @param \Exception|null $e
+     * @return \stdClass
+     * @throws \Exception
+     */
+    public function warning(array $logData=[], \Exception $e=null){
+        if (count($logData) != count($logData,1)) {
+            throw new \Exception('Log data should be one dimension array');
+        }
+        $logData['log_level'] = 'warning';
+        if (isset($logData['created_at'])) {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
+        } else {
+            $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
+        }
+        if (!is_null($e)) {
+            $logData['exception_code']  = $e->getCode();
+            $logData['exception_msg']   = $e->getMessage();
+            $logData['exception_trace'] = json_encode($e);
+        }
+        return $this->createDoc($logData);
+    }
+
+    /**
+     * 错误日志
+     * @param array $logData
+     * @param \Exception|null $e
+     * @return \stdClass
+     * @throws \Exception
+     */
     public function error(array $logData=[], \Exception $e=null){
         if (count($logData) != count($logData,1)) {
             throw new \Exception('Log data should be one dimension array');
