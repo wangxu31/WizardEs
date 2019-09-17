@@ -245,9 +245,7 @@ class WizardEsManager
             'index' => $this->getIndex(),
             'type' => $this->getType(),
             'body' => [
-                'query' => [
-                    $patterns
-                ]
+                'query' => $patterns
             ],
             'client' => $this->getClientParams()
         ];
