@@ -208,10 +208,10 @@ class WizardEsManager
 
     /**
      * 根据条件搜索文档
-     * @param array $patterns
+     * @param array $queryData
      * @return mixed
      */
-    public function search(array $patterns){
+    public function search(array $queryData){
         /**
         1. Match 查询
         'query' => [
@@ -244,9 +244,7 @@ class WizardEsManager
         $params = [
             'index' => $this->getIndex(),
             'type' => $this->getType(),
-            'body' => [
-                'query' => $patterns
-            ],
+            'body' => $queryData,
             'client' => $this->getClientParams()
         ];
         return $this->esClient->search($params);
