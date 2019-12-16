@@ -31,9 +31,9 @@ class WizardLogManager extends WizardEsManager
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
-            $logData['exception_code']  = $e->getCode();
-            $logData['exception_msg']   = $e->getMessage();
-            $logData['exception_trace'] = json_encode($e);
+            $logData['ex_code']  = $e->getCode();
+            $logData['ex_msg']   = $e->getMessage();
+            $logData['ex_trace'] = json_encode($e);
         }
         return $this->createDoc($logData);
     }
@@ -56,9 +56,9 @@ class WizardLogManager extends WizardEsManager
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
-            $logData['exception_code']  = $e->getCode();
-            $logData['exception_msg']   = $e->getMessage();
-            $logData['exception_trace'] = json_encode($e);
+            $logData['ex_code']  = $e->getCode();
+            $logData['ex_msg']   = $e->getMessage();
+            $logData['ex_trace'] = json_encode($e);
         }
         return $this->createDoc($logData);
     }
@@ -81,9 +81,9 @@ class WizardLogManager extends WizardEsManager
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
-            $logData['exception_code']  = $e->getCode();
-            $logData['exception_msg']   = $e->getMessage();
-            $logData['exception_trace'] = json_encode($e);
+            $logData['ex_code']  = $e->getCode();
+            $logData['ex_msg']   = $e->getMessage();
+            $logData['ex_trace'] = json_encode($e);
         }
         return $this->createDoc($logData);
     }
@@ -106,9 +106,9 @@ class WizardLogManager extends WizardEsManager
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
-            $logData['exception_code']  = $e->getCode();
-            $logData['exception_msg']   = $e->getMessage();
-            $logData['exception_trace'] = json_encode($e);
+            $logData['ex_code']  = $e->getCode();
+            $logData['ex_msg']   = $e->getMessage();
+            $logData['ex_trace'] = json_encode($e);
         }
         return $this->createDoc($logData);
     }
