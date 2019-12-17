@@ -28,6 +28,7 @@ class WizardLogManager extends WizardEsManager
         if (isset($logData['created_at'])) {
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
         } else {
+			$logData['created_at']  = date('Y-m-d H:i:s');
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
@@ -53,6 +54,7 @@ class WizardLogManager extends WizardEsManager
         if (isset($logData['created_at'])) {
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
         } else {
+			$logData['created_at']  = date('Y-m-d H:i:s');
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
@@ -78,6 +80,7 @@ class WizardLogManager extends WizardEsManager
         if (isset($logData['created_at'])) {
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
         } else {
+			$logData['created_at']  = date('Y-m-d H:i:s');
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {
@@ -103,6 +106,7 @@ class WizardLogManager extends WizardEsManager
         if (isset($logData['created_at'])) {
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime($logData['created_at'])-3600*8);
         } else {
+			$logData['created_at']  = date('Y-m-d H:i:s');
             $logData['kibana_time'] = date('Y-m-d H:i:s', strtotime("-8 hours"));
         }
         if (!is_null($e)) {

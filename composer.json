@@ -4,6 +4,7 @@
     "type": "library",
     "require": {
         "elasticsearch/elasticsearch": "~6.0",
+        "monolog/monolog": "1.25.2",
         "crcms/elasticsearch": "^1.0"
     },
     "license": "MIT",
@@ -15,6 +16,12 @@
     ],
     "autoload": {
         "psr-4": {"Wizard\\Elasticsearch\\": "src/Elasticsearch"}
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     },
     "minimum-stability": "stable"
 }
