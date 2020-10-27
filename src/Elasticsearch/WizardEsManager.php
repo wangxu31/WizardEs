@@ -250,6 +250,24 @@ class WizardEsManager
         return $this->esClient->search($params);
     }
 
+    public function scrollById($scroll_id,$scroll){
+        $params = [
+            'scroll'=>$scroll,
+            'scroll_id'=>$scroll_id,
+        ];
+        return $this->esClient->scroll($params);
+    }
+
+    public function scrollGetId(array $queryData){
+        $params = [
+            'scroll'=>'1m',
+            'index' => $this->getIndex(),
+            'body' => $queryData,
+            'client' => $this->getClientParams()
+        ];
+        return $this->esClient->search($params);
+    }
+
     /**
      * 更新文档
      * @param $id
